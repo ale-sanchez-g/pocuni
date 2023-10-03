@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:restMockAction xmlns:con="http://eviware.com/soapui/config" name="/course/enrolment" method="PUT" resourcePath="/course/enrolment" id="b0d1e239-3eab-453a-8dac-91e177480961">
+  <con:settings id="16c72152-ed76-438d-b457-59f0b6fb1884">
+    <con:setting id="b0d1e239-3eab-453a-8dac-91e177480961fileName">%2Fcourse%2Fenrolment1</con:setting>
+  </con:settings>
+  <con:dispatchStyle>SEQUENCE</con:dispatchStyle>
+  <con:dispatchConfig/>
+  <con:dispatchXPath/>
+  <con:routeScript/>
+  <con:response name="200" id="540b9cbc-d85f-4891-9399-f67a5c6d9ef2" httpResponseStatus="200" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+    <con:settings/>
+    <con:responseContent>{
+    "id": "ID-prod-43f6cf06-7b4c-482a-a95c-b754c1a36a5b",
+    "result": "SUCCESS",
+    "code": "200",
+    "application": "rmit-experience-api-sfdc",
+    "provider": "rmit-system-api-canvas",
+    "payload": {
+        "courseSectionResponse": [
+            {
+                "courseOfferingId": "a049j000000h74fAAA",
+                "courseOfferingName": "Test CO",
+                "sisId": "FS_CT_null_20230612_132739",
+                "section": [
+                    {
+                        "sectionId": 405838,
+                        "sectionName": "FS student",
+                        "result": "SUCCESS",
+                        "code": 200,
+                        "errormessage": ""
+                    }
+                ]
+            }
+        ]
+    }
+}</con:responseContent>
+  </con:response>
+</con:restMockAction>

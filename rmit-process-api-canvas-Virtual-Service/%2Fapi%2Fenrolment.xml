@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:restMockAction xmlns:con="http://eviware.com/soapui/config" name="/api/enrolment" method="POST" resourcePath="/api/enrolment" id="2d12947c-bf46-4499-8d17-31f2e64da92b">
+  <con:settings id="7cdde6c3-5423-41c1-b6a8-4dde8797fa95">
+    <con:setting id="2d12947c-bf46-4499-8d17-31f2e64da92bfileName">%2Fapi%2Fenrolment</con:setting>
+  </con:settings>
+  <con:defaultResponse>400</con:defaultResponse>
+  <con:dispatchStyle>SCRIPT</con:dispatchStyle>
+  <con:dispatchConfig/>
+  <con:dispatchPath>// Import the necessary classes for ReadyAPI
+import com.eviware.soapui.support.JsonUtil
+import groovy.json.JsonSlurper
+
+// Define the expected JSON data as a string
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+// Parse the JSON data directly from the request body
+def actualJsonObject
+try {
+    actualJsonObject = new groovy.json.JsonSlurper().parseText(requestBody)
+} catch (Exception e) {
+    log.error("Failed to parse JSON from request body: ${e.message}")
+}
+// Define your validation criteria
+def mandatoryProperties = ["type", "studentName", "studentId", "studentEmail", "notify", "enrolmentDetails", "enrollment_state", "accountId"]
+def studentIdRegex = /^E\d{5}$/
+def emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+def courseConnectionIdRegex = /^a\d{3}D\d{6}L\w{4}$/
+
+
+// Perform your custom validation checks here
+boolean isValid = true
+List&lt;String> validationErrors = []
+
+//if(tag != null | " " )
+//{
+	// Check if all mandatory properties exist in the JSON object
+for (String property : mandatoryProperties) {
+    if (!actualJsonObject.containsKey(property)) {
+        isValid = false
+        return "401"
+    }
+
+	// Validate 'studentId' with a regular expression
+        def studentId = actualJsonObject.studentId
+        if (!(studentId =~ studentIdRegex)) {
+            isValid = false
+            return "406"
+}
+
+    if (isValid) {
+    // Return a response with a status code of 200 if validation passes
+	return "200"
+}
+}
+
+//}
+//else ()
+//{error message}
+	
+
+
+
+
+
+
+/*
+// Output validation result
+if (isValid) {
+    println("JSON data is valid.")
+} else {
+    println("JSON data is not valid. Validation errors:")
+    validationErrors.each { println("- $it") }
+}
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+
+*/</con:dispatchPath>
+  <con:dispatchXPath/>
+  <con:parameterDispatcherRuleContainer/>
+  <con:assertion type="SwaggerComplianceAssertion" id="5cfa6c7a-fac2-4ca2-9aee-8553e87fd941" name="Swagger Compliance Assertion">
+    <con:configuration>
+      <swaggerUrl>C:\Users\steve.wong\Downloads\rmit-process-api-canvas-1.0.25-oas\api.json</swaggerUrl>
+      <strictMode>true</strictMode>
+    </con:configuration>
+  </con:assertion>
+  <con:routeScript/>
+  <con:response name="400" id="738f9a95-1960-4289-867d-72111cc80169" httpResponseStatus="400" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+    <con:settings/>
+    <con:responseContent>{
+  "error": {
+    "id": "ID-DEV-1-1517810396",
+    "timestamp": "2018-02-05T06:08:54+00:00",
+    "code": "400",
+    "message": "Bad request",
+    "description": "",
+    "application": "rmit-{provider}-{layer}-api",
+    "system": "{system}"
+  }
+}</con:responseContent>
+  </con:response>
+  <con:response name="401" id="00fe7f24-bf21-41dd-977a-59e9bd7936ba" httpResponseStatus="401" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+    <con:settings/>
+    <con:responseContent>{
+    "error": {
+      "id": "ID-DEV-1-1517810396",
+      "timestamp": "2018-02-05T06:08:54+00:00",
+      "code": "401",
+      "message": "Unauthorized",
+      "description": "The request requires user authentication",
+      "application": "rmit-{provider}-{layer}-api",
+      "system": "{system}"
+    }
+ }</con:responseContent>
+  </con:response>
+  <con:response name="200" id="a69abb33-c59f-409b-959d-1f2aed438c0f" httpResponseStatus="200" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+    <con:settings/>
+    <con:responseContent>{
+  "id": "ID-dev-qa-5231c68e-6403-43ca-a18b-9b6cb7211a74",
+  "result": "Success",
+  "code": "200",
+  "application": "rmit-process-api-canvas",
+  "provider": "iPaaS",
+  "payload": {
+    "studentId": "7101012",
+    "enrolmentResponse": [
+      {
+        "courseConnectionId": "a03p0000008utQWAAY",
+        "canvasEnrolmentId": 3799974,
+        "result": "Success",
+        "html_url": "https://rmit.test.instructure.com/courses/47333/users/237434",
+        "errorMessage": ""
+      }
+    ]
+  }
+}</con:responseContent>
+  </con:response>
+  <con:response name="406" id="944c593c-dca7-4bca-a22a-9f014912361a" httpResponseStatus="406" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" mediaType="application/json" dataSource="">
+    <con:settings/>
+    <con:responseContent>{
+  "error": {
+    "id": "ID-DEV-1-1516843763871-55-10082",
+    "timestamp": "2018-02-02T04:35:32+00:00",
+    "code": "406",
+    "message": "Not acceptable",
+    "description": "",
+    "application": "rmit-{provider}-{layer}-api",
+    "system": "{system}"
+  }
+}</con:responseContent>
+  </con:response>
+</con:restMockAction>
