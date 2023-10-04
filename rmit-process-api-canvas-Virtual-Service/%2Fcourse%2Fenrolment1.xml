@@ -35,4 +35,79 @@
     }
 }</con:responseContent>
   </con:response>
+  <con:response name="201" id="caae859d-2409-4a29-92d3-6f9836f70931" httpResponseStatus="201" mediaType="application/json">
+    <con:settings/>
+    <con:script>// Import the necessary classes for ReadyAPI
+import com.eviware.soapui.support.JsonUtil
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+import java.util.Random
+import java.util.UUID
+
+// Get request content
+def requestBody = mockRequest.getRequestContent()
+def requestJson = new JsonSlurper().parseText(requestBody)
+
+
+// Random 5 digit number
+def generateRandom5DigitNumber() {
+    def random = new Random()
+    def min = 10000 // Smallest 5-digit number
+    def max = 99999 // Largest 5-digit number
+    return min + random.nextInt(max - min + 1)
+}
+
+// Set UUID
+def generateUUID() {
+    return UUID.randomUUID().toString()
+}
+def uuid = generateUUID()
+
+def jsonResponseContract = '''
+{
+    "id": "ID-alej-12345-7b4c-482a-a95c-b754c1a36a5b",
+    "result": "SUCCESS",
+    "code": "200",
+    "application": "rmit-experience-api-sfdc",
+    "provider": "rmit-system-api-canvas",
+    "payload": {
+        "courseSectionResponse": [
+            {
+                "courseOfferingId": "a042O000001Ms31XXX",
+                "courseOfferingName": "Data_AnalyticsRMITOnline Courseoff01",
+                "sisId": "FS_DC_RMIT001_20200501_093822",
+                "section": [
+                    {
+                        "sectionId": 405838,
+                        "sectionName": "FS student",
+                        "result": "SUCCESS",
+                        "code": 200,
+                        "errormessage": ""
+                    }
+                ]
+            }
+        ]
+    }
+}
+'''
+
+// Parse the JSON payload
+def json = new JsonSlurper().parseText(jsonResponseContract)
+
+
+// Get data from request
+json.payload.courseSectionResponse[0].courseOfferingId = requestJson.courseSectionRequest[0].courseOfferingId
+json.payload.courseSectionResponse[0].courseOfferingName = requestJson.courseSectionRequest[0].courseOfferingName
+json.payload.courseSectionResponse[0].sisId = requestJson.courseSectionRequest[0].sisId
+
+// Create random data
+json.id="ID-virt-$uuid"
+json.payload.courseSectionResponse[0].section[0].sectionId = generateRandom5DigitNumber()
+
+// Convert the updated JSON back to a string
+def updatedJsonResponse = new JsonBuilder(json).toPrettyString()
+
+mockResponse.setResponseContent("$updatedJsonResponse")</con:script>
+    <con:responseContent/>
+  </con:response>
 </con:restMockAction>
