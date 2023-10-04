@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:restMockService xmlns:con="http://eviware.com/soapui/config" id="36012cfe-da96-421a-a9d9-40984239f548" port="8088" path="/" host="localhost" name="rmit-process-api-canvas Virtual Service" routeModeEnabled="false" routeEndpoint="https://procs-canvas-v1-dev.npe.integration.rmit.edu.au" routeUnmatchedOperation="false" addUnmatchedOperation="false" autoStart="false">
-  <con:settings id="5501b009-9f83-4fa4-96dd-b69a6378b155">
+<con:restMockService xmlns:con="http://eviware.com/soapui/config" addUnmatchedOperation="false" autoStart="false" host="localhost" id="36012cfe-da96-421a-a9d9-40984239f548" name="rmit-process-api-canvas Virtual Service" path="/" port="8088" routeEndpoint="https://procs-canvas-v1-dev.npe.integration.rmit.edu.au" routeModeEnabled="false" routeUnmatchedOperation="false">
+  <con:settings id="c10466a5-f09b-47e7-91d7-c05298654a63">
     <con:setting id="36012cfe-da96-421a-a9d9-40984239f548fileName">rmit-process-api-canvas-Virtual-Service</con:setting>
   </con:settings>
   <con:properties/>
