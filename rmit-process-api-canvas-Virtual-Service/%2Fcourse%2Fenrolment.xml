@@ -112,7 +112,7 @@ def updatedJsonResponse = new JsonBuilder(json).toPrettyString()
 
 mockResponse.setResponseContent("$updatedJsonResponse")</con:script>
     <con:responseContent>{
-    "id": "ID-virt-367a5803-7e43-4f85-a4f7-0463be449423",
+    "id": "ID-virt-3b872900-5e49-4d31-bde5-029f05b8d5ca",
     "result": "SUCCESS",
     "code": "200",
     "application": "rmit-experience-api-sfdc",
@@ -120,12 +120,12 @@ mockResponse.setResponseContent("$updatedJsonResponse")</con:script>
     "payload": {
         "courseSectionResponse": [
             {
-                "courseOfferingId": "a042O000001Ms31ALE",
+                "courseOfferingId": "a042O000001Ms31DEMORMIT",
                 "courseOfferingName": "Data_AnalyticsRMITOnline Courseoff01",
                 "sisId": "FS_DC_RMIT001_20200501_093822",
                 "section": [
                     {
-                        "sectionId": 37046,
+                        "sectionId": 17109,
                         "sectionName": "FS student",
                         "result": "SUCCESS",
                         "code": 200,
